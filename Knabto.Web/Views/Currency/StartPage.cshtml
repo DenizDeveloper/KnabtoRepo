@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Knabto.Entities.CrytoCurrency>
+
+<form method="post" class="startpage-form">
+    <br />
+    <input class="form-control mr-sm-2 mr-md-2 startpage-input" type="number" name="amount" placeholder="Enter amount in cents">
+    <br />
+    <div class="alert alert-dismissible alert-secondary">
+        Choose your <strong>currency</strong> below to calculate total the price.
+    </div>
+    <br />
+    <button type="submit" asp-route-currency="USD" class="btn btn-outline-secondary">USD</button>
+    <button type="submit" asp-route-currency="EUR" class="btn btn-outline-secondary">EUR</button>
+    <button type="submit" asp-route-currency="BRL" class="btn btn-outline-secondary">BRL</button>
+    <button type="submit" asp-route-currency="GBP" class="btn btn-outline-secondary">GBP</button>
+    <button type="submit" asp-route-currency="AUD" class="btn btn-outline-secondary">AUD</button>
+</form>
+
+<br />
+<br />
+
+@if (Model != null)
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Currency</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Total price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr class="table-light">
+                <th scope="row">@item.Name</th>
+                <td>@item.Currency</td>
+                <td>@item.Amount</td>
+                <td>@item.Price</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
